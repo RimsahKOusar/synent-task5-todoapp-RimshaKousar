@@ -1,0 +1,224 @@
+/*
+ ╔══════════════════════════════════════════════════════════╗
+ ║  task-list.css  –  TASK CARDS + FILTER BAR + FOOTER     ║
+ ║                                                          ║
+ ║  What this file does:                                    ║
+ ║  Styles every task card (checkbox, text, delete btn),   ║
+ ║  the All/Active/Completed filter tabs, the empty-state  ║
+ ║  message, and the footer "Clear completed" button.      ║
+ ╚══════════════════════════════════════════════════════════╝
+*/
+
+
+/* ══════════════════════════════════════════════════════════
+   FILTER BAR
+   ══════════════════════════════════════════════════════════ */
+
+/* Row of three pill buttons */
+.filter-bar {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.filter-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  padding: var(--space-xs) var(--space-md);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filter-btn:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+/* .active is toggled by events.js when a filter is selected */
+.filter-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0d0d0f;
+  font-weight: 600;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   TASK LIST  (the <main> container)
+   ══════════════════════════════════════════════════════════ */
+
+/* Vertical stack with small gap between cards */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   TASK CARD  – individual task item
+   ══════════════════════════════════════════════════════════ */
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+
+  /* Slide-in animation when a card is created */
+  animation: slideIn 0.25s ease forwards;
+
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.task-item:hover {
+  background: var(--bg-card-hover);
+  border-color: #3a3a48;
+}
+
+/* Card slide-in keyframe */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ── CUSTOM CHECKBOX ──────────────────────────────────────────────
+   We hide the native <input type="checkbox"> and style a
+   custom square using ::before on the label.
+   ─────────────────────────────────────────────────────────────── */
+
+/* Hide native checkbox (still accessible via keyboard) */
+.task-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  flex-shrink: 0;         /* don't let it squish */
+  position: relative;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+/* Checked state – fill with accent colour */
+.task-checkbox:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Draw the checkmark (✓) inside using ::after pseudo-element */
+.task-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 6px;
+  height: 10px;
+  border: 2px solid #0d0d0f;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
+
+/* ── TASK TEXT ────────────────────────────────────────────────────
+   flex: 1 makes the text grow to fill space between checkbox
+   and delete button.
+   ─────────────────────────────────────────────────────────────── */
+.task-text {
+  flex: 1;
+  font-size: 0.97rem;
+  color: var(--text-primary);
+  word-break: break-word;   /* wrap very long words */
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+/* Completed state applied by render.js via CSS class */
+.task-text.done {
+  text-decoration: line-through;
+  color: var(--done-line);
+}
+
+
+/* ── DELETE BUTTON ────────────────────────────────────────────────
+   Hidden until the card is hovered – clean look by default.
+   ─────────────────────────────────────────────────────────────── */
+.btn-delete {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: var(--space-xs);
+  border-radius: var(--radius-sm);
+  opacity: 0;               /* invisible by default */
+  transition: opacity 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+}
+
+/* Reveal delete button when card is hovered */
+.task-item:hover .btn-delete {
+  opacity: 1;
+}
+
+.btn-delete:hover {
+  color: var(--danger);
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   EMPTY STATE  – shown when the task list has 0 items
+   ══════════════════════════════════════════════════════════ */
+.empty-state {
+  text-align: center;
+  padding: var(--space-xl) var(--space-md);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.empty-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: var(--space-md);
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   FOOTER  – "Clear completed" action
+   ══════════════════════════════════════════════════════════ */
+.app-footer {
+  display: flex;
+  justify-content: flex-end;   /* push button to the right */
+  padding-bottom: var(--space-xl);
+}
+
+.btn-clear-done {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  padding: var(--space-xs) var(--space-md);
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-clear-done:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+}
