@@ -1,0 +1,79 @@
+/*
+ ╔══════════════════════════════════════════════════════════╗
+ ║  header.css  –  APP HEADER STYLES                       ║
+ ║                                                          ║
+ ║  What this file does:                                    ║
+ ║  Styles the top section: brand name, subtitle,          ║
+ ║  and the live task-counter badge.                        ║
+ ╚══════════════════════════════════════════════════════════╝
+*/
+
+
+/* ── HEADER CONTAINER ─────────────────────────────────────────────
+   Stacks brand row and subtitle vertically.
+   ─────────────────────────────────────────────────────────────── */
+.app-header {
+  padding-top: var(--space-md);
+  padding-bottom: var(--space-sm);
+}
+
+
+/* ── BRAND ROW ────────────────────────────────────────────────────
+   Places the star icon and "TaskFlow" text side-by-side.
+   ─────────────────────────────────────────────────────────────── */
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* Decorative icon – the ✦ symbol */
+.brand-icon {
+  font-size: 1.5rem;
+  color: var(--accent);
+  /* Slow spin animation – purely decorative */
+  display: inline-block;
+  animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* App name */
+.brand-title {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;  /* tighten headline tracking */
+}
+
+
+/* ── SUBTITLE ─────────────────────────────────────────────────────
+   Small descriptive line under the brand name.
+   ─────────────────────────────────────────────────────────────── */
+.header-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-top: var(--space-xs);
+  margin-left: 2.2rem;       /* align under brand-title (past icon) */
+}
+
+
+/* ── TASK COUNTER ─────────────────────────────────────────────────
+   Pill-shaped badge updated live by render.js.
+   ─────────────────────────────────────────────────────────────── */
+.task-counter {
+  display: inline-block;
+  margin-top: var(--space-md);
+  padding: var(--space-xs) var(--space-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
