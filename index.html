@@ -63,14 +63,17 @@
       <p>No tasks yet. Add one above!</p>
     </div>
 
-    
-
-
-
+    <!-- MODULE 5 : Filter Tabs -->
+    <nav class="filter-bar" aria-label="Filter tasks">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="active">Active</button>
+      <button class="filter-btn" data-filter="completed">Completed</button>
+    </nav>
 
 <!-- ── JAVASCRIPT (load order matters!) ──────────────────────── -->
   <script src="js/storage.js"></script>   <!-- 1. read/write localStorage  -->
   <script src="js/render.js"></script>    <!-- 2. build HTML from data      -->
+  <script src="js/events.js"></script>    <!-- 3. attach click/key handlers -->
 
   </div>
 </body>
