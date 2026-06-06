@@ -1,0 +1,97 @@
+/*
+ ╔══════════════════════════════════════════════════════════╗
+ ║  base.css  –  FOUNDATION STYLES                         ║
+ ║                                                          ║
+ ║  What this file does:                                    ║
+ ║  1. Defines CSS custom properties (variables) that       ║
+ ║     every other CSS file can reuse.                      ║
+ ║  2. Resets browser default spacing/box-model.           ║
+ ║  3. Sets the page background and overall font.           ║
+ ╚══════════════════════════════════════════════════════════╝
+*/
+
+
+/* ── 1. CSS VARIABLES ─────────────────────────────────────────────
+   Think of these like "named colours / sizes" you set once
+   and use everywhere.  Change a value here → updates whole app.
+   ─────────────────────────────────────────────────────────────── */
+:root {
+  /* Colour palette */
+  --bg-page:        #0d0d0f;       /* almost-black page background   */
+  --bg-card:        #17171b;       /* slightly lighter card surface  */
+  --bg-card-hover:  #1f1f26;       /* card hover lift                */
+  --border:         #2a2a35;       /* subtle divider lines           */
+  --accent:         #c8f135;       /* vivid lime – primary accent    */
+  --accent-dim:     #9ab82a;       /* dimmer accent for hover states */
+  --text-primary:   #f0f0f5;       /* main readable text             */
+  --text-secondary: #7a7a8a;       /* captions, placeholders         */
+  --done-line:      #4a4a5a;       /* strikethrough colour           */
+  --danger:         #ff5f5f;       /* delete button / errors         */
+
+  /* Typography */
+  --font-display: 'Syne', sans-serif;    /* headings / brand        */
+  --font-body:    'DM Sans', sans-serif; /* everything else         */
+
+  /* Spacing scale */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+
+  /* Shape */
+  --radius-sm:  8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+}
+
+
+/* ── 2. BOX-MODEL RESET ───────────────────────────────────────────
+   By default browsers add padding/border *outside* element width.
+   `box-sizing: border-box` makes width include padding + border.
+   Easier maths when laying things out.
+   ─────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ── 3. BASE PAGE STYLES ──────────────────────────────────────────
+   Sets the dark background, font, and vertically centres
+   the app wrapper on tall screens.
+   ─────────────────────────────────────────────────────────────── */
+body {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: var(--space-xl) var(--space-md);
+}
+
+
+/* ── 4. LAYOUT WRAPPER ────────────────────────────────────────────
+   Constrains content to a readable max-width and centres it.
+   ─────────────────────────────────────────────────────────────── */
+.app-wrapper {
+  max-width: 640px;
+  margin: 0 auto;           /* auto left+right = centred */
+  display: flex;
+  flex-direction: column;   /* stack children vertically */
+  gap: var(--space-lg);
+}
+
+
+/* ── 5. SHARED UTILITY ────────────────────────────────────────────
+   .hidden  –  used by JavaScript to toggle visibility
+   ─────────────────────────────────────────────────────────────── */
+.hidden {
+  display: none !important;
+}
+
+
