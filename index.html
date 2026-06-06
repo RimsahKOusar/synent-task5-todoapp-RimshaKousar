@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>to-do-app</title>
+    <link rel="stylesheet" href="css/base.css" />         
 </head>
 <body>
     
@@ -15,6 +16,21 @@
     │  Centers everything on the page             │
     └─────────────────────────────────────────────┘
   -->
-  <div class="app-wrapper"> </div>
+  <div class="app-wrapper"> 
+
+    <!-- MODULE 1 : Header -->
+    <header class="app-header">
+      <div class="header-brand">
+        <span class="brand-icon">✦</span>
+        <h1 class="brand-title">TaskFlow</h1>
+      </div>
+      <p class="header-subtitle">Stay on top of everything.</p>
+      <!-- Live counter injected by render.js -->
+      <div class="task-counter" id="taskCounter">0 tasks remaining</div>
+    </header>
+
+    
+
+  </div>
 </body>
 </html>
