@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/base.css" />  
     <link rel="stylesheet" href="css/header.css" />      
     <link rel="stylesheet" href="css/input-form.css" />         
+    <link rel="stylesheet" href="css/task-list.css" /> 
 </head>
 <body>
     
@@ -51,10 +52,25 @@
       <p class="input-error hidden" id="inputError">Please enter a task first!</p>
     </section>
 
+<!-- MODULE 3: Task List (cards injected here by render.js) -->
+    <main class="task-list" id="taskList" aria-live="polite">
+      <!-- Task cards are generated dynamically – see js/render.js -->
+    </main>
+
+    <!-- MODULE 4 : Empty-state message (hidden when tasks exist) -->
+    <div class="empty-state hidden" id="emptyState">
+      <span class="empty-icon">📋</span>
+      <p>No tasks yet. Add one above!</p>
+    </div>
+
+    
+
+
 
 
 <!-- ── JAVASCRIPT (load order matters!) ──────────────────────── -->
   <script src="js/storage.js"></script>   <!-- 1. read/write localStorage  -->
+  <script src="js/render.js"></script>    <!-- 2. build HTML from data      -->
 
   </div>
 </body>
