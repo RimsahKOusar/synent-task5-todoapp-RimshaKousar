@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>to-do-app</title>
-    <link rel="stylesheet" href="css/base.css" />         
+    <link rel="stylesheet" href="css/base.css" />  
+    <link rel="stylesheet" href="css/header.css" />      
+    <link rel="stylesheet" href="css/input-form.css" />         
 </head>
 <body>
     
@@ -29,7 +31,30 @@
       <div class="task-counter" id="taskCounter">0 tasks remaining</div>
     </header>
 
-    
+    <!-- MODULE 2 : Add-Task Form -->
+    <section class="input-section" aria-label="Add a new task">
+      <div class="input-card">
+        <input
+          type="text"
+          id="taskInput"
+          class="task-input"
+          placeholder="What needs to be done?"
+          maxlength="120"
+          autocomplete="off"
+        />
+        <button class="btn-add" id="addBtn" aria-label="Add task">
+          <span class="btn-icon">+</span>
+          <span class="btn-label">Add</span>
+        </button>
+      </div>
+      <!-- Inline error shown by events.js when input is empty -->
+      <p class="input-error hidden" id="inputError">Please enter a task first!</p>
+    </section>
+
+
+
+<!-- ── JAVASCRIPT (load order matters!) ──────────────────────── -->
+  <script src="js/storage.js"></script>   <!-- 1. read/write localStorage  -->
 
   </div>
 </body>
