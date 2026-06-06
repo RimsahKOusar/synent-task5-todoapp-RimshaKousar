@@ -1,0 +1,108 @@
+/*
+ ╔══════════════════════════════════════════════════════════╗
+ ║  input-form.css  –  ADD-TASK FORM STYLES                ║
+ ║                                                          ║
+ ║  What this file does:                                    ║
+ ║  Styles the text input and "+ Add" button that let      ║
+ ║  the user type and submit a new task.                    ║
+ ╚══════════════════════════════════════════════════════════╝
+*/
+
+
+/* ── SECTION WRAPPER ──────────────────────────────────────────────
+   Just a container – no visible styles, just spacing.
+   ─────────────────────────────────────────────────────────────── */
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+
+/* ── INPUT CARD ───────────────────────────────────────────────────
+   The rounded box that holds the text field + button together.
+   Uses flexbox so both sit on the same line.
+   ─────────────────────────────────────────────────────────────── */
+.input-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-sm) var(--space-sm) var(--space-sm) var(--space-md);
+
+  /* Smooth border colour change on focus-within:
+     focus-within fires when ANY child (the <input>) is focused */
+  transition: border-color 0.2s ease;
+}
+
+.input-card:focus-within {
+  border-color: var(--accent);
+}
+
+
+/* ── TEXT INPUT ───────────────────────────────────────────────────
+   flex: 1 makes it grow to fill remaining horizontal space.
+   ─────────────────────────────────────────────────────────────── */
+.task-input {
+  flex: 1;                   /* take all available width  */
+  background: transparent;   /* invisible – card bg shows */
+  border: none;
+  outline: none;             /* remove blue browser ring  */
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+.task-input::placeholder {
+  color: var(--text-secondary);
+}
+
+
+/* ── ADD BUTTON ───────────────────────────────────────────────────
+   Lime accent pill button.  Shrinks on click via :active scale.
+   ─────────────────────────────────────────────────────────────── */
+.btn-add {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  background: var(--accent);
+  color: #0d0d0f;             /* dark text on bright button */
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+  white-space: nowrap;        /* never wrap "Add" to two lines */
+}
+
+.btn-add:hover  { background: var(--accent-dim); }
+.btn-add:active { transform: scale(0.96); }  /* press-down feel */
+
+/* The "+" icon inside the button */
+.btn-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+
+/* ── ERROR MESSAGE ────────────────────────────────────────────────
+   Shown by events.js when user clicks Add with empty input.
+   ─────────────────────────────────────────────────────────────── */
+.input-error {
+  color: var(--danger);
+  font-size: 0.82rem;
+  padding-left: var(--space-md);
+  animation: shake 0.3s ease;  /* wiggle to draw attention */
+}
+
+/* Quick horizontal shake animation */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-6px); }
+  75%       { transform: translateX(6px); }
+}
